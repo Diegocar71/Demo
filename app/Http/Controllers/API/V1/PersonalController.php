@@ -18,7 +18,7 @@ class PersonalController extends BaseController
      */
     public function __construct(Personal $personal)
     {
-        $this->middleware('auth:api');
+        // $this->middleware('auth:api');
         $this->personal = $personal;
     }
 
@@ -44,19 +44,19 @@ class PersonalController extends BaseController
 
     public function list()
     {
-        $personal = $this->personal->pluck('lup', 'id') ;
+        $personals = $this->personal->pluck('lup', 'id') ;
 
-        return $this->sendResponse($personal, 'Listado del Personal');
+        return $this->sendResponse($personals, 'Listado del Personal');
     }
 
-    public function listApe()
-    {
+    // public function listApe()
+    // {
 
-        // REVISAR !!!!!!
-        $personal = $this->personal->where('apellido',"nombre", "lup" , 'id') -> orderBy('lup', 'asc') ;
+    //     // REVISAR !!!!!!
+    //     $personal = $this->personal->where('apellido',"nombre", "lup" , 'id') -> orderBy('lup', 'asc') ;
 
-        return $this->sendResponse($personal, 'Listado del Personal');
-    }
+    //     return $this->sendResponse($personal, 'Listado del Personal');
+    // }
 
     public function store(PersonalRequest $request)
     {

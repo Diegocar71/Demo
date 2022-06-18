@@ -63,7 +63,7 @@
                         <a href="#" @click="VerSancion(personal.id)">
                             <router-link to="/sanciones"> <i class='fas fa-address-card green' title="Ver Sanciones"></i> </router-link>
                         </a>
-                        
+
                       </td>
                     </tr>
                   </tbody>
@@ -190,13 +190,7 @@
               this.form.reset();
               $('#addNew').modal('show');
               this.form.fill(personal);
-          },
-
-          VerSancion(){
-            //   ver una tabla con sanciones de la personal
-
-
-          },
+           },
           newModal(){
               this.editmode = false;
               this.form.reset();
