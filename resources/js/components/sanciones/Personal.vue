@@ -58,11 +58,12 @@
                         </a>
                         /
 
-                        <!-- Boton para ver las Sanciones -->
+                        <!-- Boton para ver las Sanciones """REVISAR""" -->
 
-                        <a href="#" @click="VerSancion(personal.id)">
-                            <router-link to="/sanciones"> <i class='fas fa-address-card green' title="Ver Sanciones"></i> </router-link>
+                        <a href="#" @click="VerSancion(personal)">
+                            <router-link to="/sanciones"> <i class='fas fa-address-card orange' title="Ver Sanciones" ></i> </router-link>
                         </a>
+                        <!-- Fin Boton para ver las Sanciones -->
 
                       </td>
                     </tr>
@@ -162,7 +163,7 @@
 
                 }),
                 categorias: [],
-                autocompleteItems: [],
+
             }
         },
         methods: {
@@ -224,7 +225,7 @@
 
                   Toast.fire({
                       icon: 'error',
-                      title: '¡Ocurrió algún error! El Personal ya Existe'
+                      title: '¡Ocurrió algún error! Inténtalo de nuevo'
                   });
               })
           },
@@ -292,13 +293,7 @@
                 return text.substring(0, length) + suffix;
             },
         },
-        computed: {
-          filteredItems() {
-            return this.autocompleteItems.filter(i => {
-              return i.text.toLowerCase().indexOf(this.tag.toLowerCase()) !== -1;
-            });
-          },
-        },
+
     }
 
 </script>

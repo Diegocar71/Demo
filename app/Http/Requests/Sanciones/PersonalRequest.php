@@ -39,7 +39,7 @@ class PersonalRequest extends FormRequest
         return [
             // 'category_id'
             'catpersonal_id' => 'required|integer|exists:catpersonals,id',
-            'lup' => 'required|unique|string|max:191',
+            'lup' => 'required|string|max:191',
             'apellido' => 'required|string|max:191',
             'nombre' => 'required|string|max:191',
         ];
@@ -56,7 +56,7 @@ class PersonalRequest extends FormRequest
             // 'category_id'
 
             'catpersonal_id' => 'required|integer|exists:catpersonals,id',
-            'lup' => 'required|unique|string|max:191',
+            'lup' => 'required|string|max:191',
             'apellido' => 'required|string|max:191',
             'nombre' => 'required|string|max:191',
 

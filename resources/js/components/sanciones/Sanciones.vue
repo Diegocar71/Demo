@@ -93,18 +93,21 @@
                     <form @submit.prevent="editmode ? updateSancione() : createSancione()" >
 
                         <div class="modal-body">
-                            <div class="text-center">
-                                <img  v-bind:src="'/images/' + form.lup + '.jpg'" onerror="this.src='/images/SinFoto2.jpg'" height="100" width="100" class="img-circle" />
-                                <has-error :form="form" field="foto"></has-error>
-                                <hr>
-
-                                <div v-for="personal in personal.data" :key="personal.id">
-                                    <h3 v-if="personal.id == form.personal_id " class="text-capitalize ">{{personal.catpersonal.detalle + " " + personal.apellido + ", " + personal.nombre}}</h3>
+                            <div class="row">
+                                <div class="text-center">
+                                    <div class="col-md-4">
+                                        <img  v-bind:src="'/images/' + form.lup + '.jpg'" onerror="this.src='/images/SinFoto2.jpg'" height="100" width="100" class="img-circle" />
+                                        <br>
+                                    </div>
                                 </div>
-
-                                <hr>
+                                <div class="col-md-9">
+                                    <br>
+                                    <div v-for="personal in personal.data" :key="personal.id">
+                                        <h3 v-if="personal.id == form.personal_id " class="text-capitalize ">{{personal.catpersonal.detalle + " " + personal.apellido + ", " + personal.nombre}}</h3>
+                                    </div>
+                                    <hr>
+                                </div>
                             </div>
-
                             <div class="row">
 
                                 <div class="col-md-3">
@@ -117,6 +120,11 @@
                                     </select>
                                     <has-error :form="form" field="personal_id"></has-error>
                                 </div>
+
+                                <input v-model="form.lup" type="hidden" name="lup"
+                                    class="form-control" :class="{ 'is-invalid': form.errors.has('lup') }">
+                                <has-error :form="form" field="lup"></has-error>
+
 
                                 <div class="col-md-3">
                                     <label>Nº de Disposición</label>
@@ -144,17 +152,17 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label>Destino General</label>
-                                    <input v-model="form.dest_gral" type="text" name="dest_gral"
-                                        class="form-control" :class="{ 'is-invalid': form.errors.has('dest_gral') }">
-                                    <has-error :form="form" field="dest_gral"></has-error>
-                                </div>
-
-                                <div class="col-md-6">
                                     <label>Destino</label>
                                     <input v-model="form.destino" type="text" name="destino"
                                         class="form-control" :class="{ 'is-invalid': form.errors.has('destino') }">
                                     <has-error :form="form" field="destino"></has-error>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Destino General</label>
+                                    <input v-model="form.dest_gral" type="text" name="dest_gral"
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('dest_gral') }">
+                                    <has-error :form="form" field="dest_gral"></has-error>
                                 </div>
 
                                 <div class="col-md-3">
@@ -166,9 +174,16 @@
 
                                 <div class="col-md-3">
                                     <label>Tipo de Sancion</label>
-                                    <input v-model="form.tipo_sancion" type="text" name="tipo_sancion"
+                                    <!-- <input v-model="form.tipo_sancion" type="text" name="tipo_sancion"
                                         class="form-control" :class="{ 'is-invalid': form.errors.has('tipo_sancion') }">
-                                    <has-error :form="form" field="tipo_sancion"></has-error>
+                                    <has-error :form="form" field="tipo_sancion"></has-error> -->
+
+                                    <select class="form-control" v-model="form.tipo_sancion" type="text" name="tipo_sancion">
+                                        <option value="Apercibimiento">Apercibimiento</option>
+                                        <option value="Apercibimiento Leve">Apercibimiento Leve</option>
+                                        <option value="Apercibimiento Grave">Apercibimiento Grave</option>
+                                        <option value="Suspencion de Empleo">Suspencion de Empleo</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-md-3">
@@ -188,7 +203,7 @@
                                 <div class="col-md-12">
                                     <label>Detalle</label>
                                     <textarea v-model="form.detalle" name="detalle"
-                                        class="form-control" :class="{ 'is-invalid': form.errors.has('detalle') }"></textarea>
+                                        class="form-control text-uppercase" :class="{ 'is-invalid': form.errors.has('detalle') }"></textarea>
                                     <has-error :form="form" field="detalle"></has-error>
                                 </div>
 
@@ -237,7 +252,7 @@
                                 <div class="col-md-12">
                                     <label>Observaciones</label>
                                     <textarea v-model="form.observaciones" name="observaciones"
-                                        class="form-control" :class="{ 'is-invalid': form.errors.has('observaciones') }"></textarea>
+                                        class="form-control text-uppercase" :class="{ 'is-invalid': form.errors.has('observaciones') }"></textarea>
                                     <has-error :form="form" field="observaciones"></has-error>
                                 </div>
 
@@ -245,9 +260,27 @@
 
                             </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button v-show="editmode" type="submit" class="btn btn-success">Grabar Modificación</button>
-                            <button v-show="!editmode" type="submit" class="btn btn-primary">Grabar</button>
+
+                            <div class="col-md-12">
+                            <form class="was-validated">
+                                <div class="input-group ">
+                                    <input type="file" class="form-control" accept="application/pdf"  aria-label="file example" id="pdf" required>
+                                    <button class="btn btn-primary" type="button">Archivar PDF</button>
+                                </div>
+                            </form>
+                            </div>
+                                <!-- Muestra el nombre del archivo REVISAR
+                                <form action="/ver.vue">
+                                <label for="myfile">Select a file:</label>
+                                <input type="file" id="myfile" name="myfile"><br><br>
+                                <input type="submit" value="Submit">
+                                </form> -->
+
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Ver PDF</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" @click="borrarInpPDF">Cerrar</button>
+
+                                <button v-show="editmode" type="submit" class="btn btn-success">Grabar Modificación</button>
+                                <button v-show="!editmode" type="submit" class="btn btn-primary">Grabar</button>
                         </div>
 
                         </form>
@@ -295,10 +328,10 @@
                                 <label>Número de RR.HH. : {{ form.numero_rrhh }}</label><br>
                             </div>
                             <div class="col-md-4">
-                                <label>Destino Gral. : {{ form.dest_gral }}</label><br>
+                                 <label> Destino : {{ form.destino }}</label><br>
                             </div>
                             <div class="col-md-4">
-                                 <label> Destino : {{ form.destino }}</label><br>
+                                <label>Destino Gral. : {{ form.dest_gral }}</label><br>
                             </div>
                             <div class="col-md-4">
                                  <label> Suspension de Emp. : {{ form.susp_empleo }}</label><br>
@@ -308,7 +341,7 @@
                             </div>
                             <div class="col-md-12">
                                  <label>Detalle : </label><br>
-                                 <label align="justify" class="uppercase">{{ form.detalle }}</label><br>
+                                 <label align="justify" class="text-uppercase">{{ form.detalle }}</label><br>
                                 <hr>
                             </div>
                             <div class="col-md-12" v-for="personal in personal.data" :key="personal.lup" >
@@ -334,7 +367,7 @@
                             </div>
                             <div class="col-md-12">
                                  <label>Observaciones : </label><br>
-                                 <label align="justify" class="uppercase">{{ form.observaciones }}</label><br>
+                                 <label align="justify" class="text-uppercase">{{ form.observaciones }}</label><br>
                             </div>
                         </div>
                     </div>
@@ -377,6 +410,7 @@
                 editmode: false,
                 sanciones : {},
                 personal: {},
+
                 form: new Form({
                     id : '',
                     personal_id: '',
@@ -404,9 +438,16 @@
                 categorias: [],
                 legajo: [],
                 autocompleteItems: [],
+
             }
         },
+
         methods: {
+
+
+          borrarInpPDF(){
+                document.getElementById("pdf").value = "";
+            },
 
           getResults(page = 1) {
 
@@ -440,6 +481,7 @@
               this.form.reset();
               $('#addNew').modal('show');
               this.form.fill(sancione);
+
           },
           editModalDet(sancione){
               this.editmode = true;
@@ -485,6 +527,7 @@
           },
           updateSancione(){
               this.$Progress.start();
+
               this.form.put('api/sancione/'+this.form.id)
               .then((response) => {
                   // success
@@ -502,6 +545,8 @@
                   this.$Progress.fail();
               });
 
+            console.log('Debuggeando con JAVSCRiPT: ' + JSON.stringify(this.form));
+            //this.$Progress.finish();
           },
           deleteSancione(id){
               Swal.fire({

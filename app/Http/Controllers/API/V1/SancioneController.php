@@ -125,4 +125,6 @@ class SancioneController extends BaseController
 
         return response()->json(['success' => true]);
     }
+
+    
 }

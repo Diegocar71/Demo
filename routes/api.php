@@ -38,6 +38,7 @@ Route::namespace('App\\Http\\Controllers\\API\V1')->group(function () {
     Route::get('personal/listApe', 'PersonalController@listApe');
 
 
+
     Route::apiResources([
         'user' => 'UserController',
         'product' => 'ProductController',
