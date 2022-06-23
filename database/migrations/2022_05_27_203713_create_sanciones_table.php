@@ -15,7 +15,7 @@ class CreateSancionesTable extends Migration
     {
         Schema::create('sanciones', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('personal_id');
+            $table->integer('personal_id');
             $table->string('numero_disp');
             $table->string('numero_rrhh');
             $table->string('lup');

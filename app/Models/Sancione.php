@@ -11,7 +11,7 @@ class Sancione extends Model
     use HasFactory,SoftDeletes;
 
     protected $fillable = [
-        'personal_id','numero_disp', 'numero_rrhh','lup', 'catpersonal_id','dest_gral','destino','fecha_sancion','tipo_sancion','susp_empleo','fecha_not','detalle','Impuesta_lup','cumplida','pri_recurso','seg_recurso','resolucion','notificacion','observaciones','created_at',
+        'personal_id','numero_disp', 'numero_rrhh','lup', 'catpersonal_id','dest_gral','destino','fecha_sancion','tipo_sancion','susp_empleo','fecha_not','detalle','Impuesta_lup','cumplida','pri_recurso','seg_recurso','resolucion','notificacion','observaciones',
     ];
 
     public function catpersonal()
@@ -19,10 +19,6 @@ class Sancione extends Model
         return $this->belongsTo(Catpersonal::class);
     }
 
-    public function personal()
-    {
-        return $this->belongsTo(personal::class);
-    }
 }
 
 

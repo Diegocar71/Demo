@@ -290,7 +290,7 @@
         </div>
 
         <!-- Modal Detalle -->
-
+<!--
         <div class="modal fade" id="VerDetalle" tabindex="-1" role="dialog" aria-labelledby="VerDetalle" aria-hidden="true">
 
             <div class="modal-dialog modal-dialog-centered" style="max-width: 50%!important;" role="document">
@@ -380,15 +380,15 @@
                             </svg>
                             Ver PDF
                         </button>
-                        <!-- <button class="btn btn-primary" data-dismiss="modal">
+                        <button class="btn btn-primary" data-dismiss="modal">
 
-                        </button> -->
+                        </button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Volver</button>
                     </div>
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Fin Modal Detalle -->
 
@@ -477,6 +477,7 @@
           },
 
           editModal(sancione){
+            console.log(sancione)
               this.editmode = true;
               this.form.reset();
               $('#addNew').modal('show');
@@ -484,6 +485,7 @@
 
           },
           editModalDet(sancione){
+
               this.editmode = true;
               this.form.reset();
               this.form.fill(sancione);

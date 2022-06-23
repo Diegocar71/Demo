@@ -22,25 +22,12 @@ class PersonalController extends BaseController
         $this->personal = $personal;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function index()
     {
         $personals = $this->personal->with('catpersonal')->orderBy('lup', 'asc')->paginate(4);
 
         return $this->sendResponse($personals, 'Listado de Personas');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  App\Http\Requests\Products\PersonalRequest  $request
-     * @return \Illuminate\Http\Response
-     */
 
     public function list()
     {

@@ -35,6 +35,7 @@ Route::namespace('App\\Http\\Controllers\\API\V1')->group(function () {
     Route::post('product/upload', 'ProductController@upload');
     Route::get('catpersonal/list', 'CatpersonalController@list');
     Route::get('personal/list', 'PersonalController@list');
+    Route::get('sancione/list', 'SancioneController@list');
     Route::get('personal/listApe', 'PersonalController@listApe');
 
 

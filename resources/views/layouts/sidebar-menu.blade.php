@@ -30,7 +30,7 @@
       </li>
 
       <li class="nav-item">
-        <router-link to="/sanciones" class="nav-link">
+        <router-link to="/sancione" class="nav-link">
           <i class="nav-icon fas fa-chalkboard-teacher purple"></i>
           <p>
             Sanciones

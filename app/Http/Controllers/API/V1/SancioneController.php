@@ -22,25 +22,20 @@ class SancioneController extends BaseController
         $this->sancione = $sancione;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $sanciones = $this->sancione->with('catpersonal', 'personal')->orderBy('lup', 'asc')->paginate(10);
+        $sanciones = $this->sancione->with('catpersonal',)->orderBy('lup', 'asc')->paginate(10);
 
         return $this->sendResponse($sanciones, 'Listado de Sanciones');
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\SancioneRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function list()
+    {
+        $sanciones = $this->sancione->pluck('lup', 'id') ;
+
+        return $this->sendResponse($sanciones, 'Listado de Sanciones');
+    }
     public function store(SancioneRequest $request)
     {
         $sancione = $this->sancione->create([
@@ -77,7 +72,7 @@ class SancioneController extends BaseController
      */
     public function show( $id)
     {
-        $sancione = $this->sancione->with(['catpersonal'], ['personal'])->findOrFail($id);
+        $sancione = $this->sancione->with(['catpersonal'])->findOrFail($id);
 
         return $this->sendResponse($sancione, 'Listado de Sanciones');
 
@@ -94,6 +89,7 @@ class SancioneController extends BaseController
      */
     public function update(SancioneRequest $request, $id)
     {
+
         $sancione = $this->sancione->findOrFail($id);
 
         $sancione->update($request->all());
@@ -126,5 +122,5 @@ class SancioneController extends BaseController
         return response()->json(['success' => true]);
     }
 
-    
+
 }
